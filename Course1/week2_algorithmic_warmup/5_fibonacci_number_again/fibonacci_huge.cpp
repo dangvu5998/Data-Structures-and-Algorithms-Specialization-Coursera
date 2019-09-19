@@ -1,23 +1,34 @@
+#define ll long long
 #include <iostream>
+#include <cmath>
+#include <vector>
 
-long long get_fibonacci_huge_naive(long long n, long long m) {
+using namespace std;
+
+ll get_fibonacci_huge_naive(ll n, ll m) {
     if (n <= 1)
         return n;
 
-    long long previous = 0;
-    long long current  = 1;
+    ll previous = 0;
+    ll current  = 1;
 
-    for (long long i = 0; i < n - 1; ++i) {
-        long long tmp_previous = previous;
+    vector<ll> fib_mod;
+    ll i;
+    for (i = 0; i < n - 1; ++i) {
+        fib_mod.push_back(previous);
+        ll tmp_previous = previous;
         previous = current;
-        current = tmp_previous + current;
+        current = (tmp_previous%m + current%m)%m;
+        if(previous % m == 0 && current%m == 1)
+            break;
     }
-
-    return current % m;
+    if (i == n - 1)
+        return current % m;
+    return fib_mod[n%fib_mod.size()];
 }
 
 int main() {
-    long long n, m;
+    ll n, m;
     std::cin >> n >> m;
     std::cout << get_fibonacci_huge_naive(n, m) << '\n';
 }
