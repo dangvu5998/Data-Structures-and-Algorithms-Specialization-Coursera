@@ -1,11 +1,21 @@
 #include <iostream>
 #include <vector>
 
-using std::vector;
+using namespace std;
 
 vector<int> optimal_summands(int n) {
   vector<int> summands;
-  //write your code here
+  int i = 0;
+  while (n > 0) {
+      i++;
+      if (n <= i*2) {
+          summands.push_back(n);
+          n = 0;
+      } else {
+          summands.push_back(i);
+          n -= i;
+      }
+  }
   return summands;
 }
 

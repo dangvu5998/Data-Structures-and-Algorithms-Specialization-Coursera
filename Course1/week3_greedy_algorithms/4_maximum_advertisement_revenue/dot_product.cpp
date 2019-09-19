@@ -3,13 +3,15 @@
 #include <iostream>
 #include <vector>
 
-using std::vector;
+using namespace std;
 
 ll max_dot_product(vector<int> a, vector<int> b) {
   // write your code here
   ll result = 0;
+  sort(a.begin(), a.end());
+  sort(b.begin(), b.end());
   for (size_t i = 0; i < a.size(); i++) {
-    result += ((ll a[i]) * b[i];
+    result += ((ll) a[i] * (ll) b[i]);
   }
   return result;
 }
